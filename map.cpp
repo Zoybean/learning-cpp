@@ -7,7 +7,7 @@ std::array<R,N> map(R (*func)(D), D (& array)[N])
 	//R mapped[N] = new R[N];
 	std::array<R,N> mapped = new std::array<R,N>;
 	//std::array<R,N> mapped();
-	for (int ii = 0; ii < N; ii ++)
+	for (int ii = 0; ii < N; ++ ii)
 	{
 		mapped[ii] = (*func)(array[ii]);
 	}
