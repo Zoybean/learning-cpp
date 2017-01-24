@@ -4,8 +4,8 @@ template <typename D>
 class Unique
 {
 	protected:
-	public:
 		D *data;
+	public:
 		Unique(D *data) : data(data)
 		{
 			std::cout << "generic constructor called" << std::endl;
@@ -17,13 +17,25 @@ class Unique
 		}
 };
 template <typename D>
-class UniquePtr : public Unique<D>
+class UniquePtr// : public Unique<D>
 {
-	public:
-		UniquePtr(D *data)
+	protected:
+		D *data;
+	public: //Should be able to declare in a super class
+		UniquePtr(D *data) : data(data)
 		{
-			Unique(data);
+			std::cout << "generic constructor called" << std::endl;
 		}
+		bool reset()
+		{
+			data = NULL;
+			return true;
+		}
+	public:
+		/*UniquePtr(D *data)
+		{
+			Unique<D>(data);
+		}*/
 		UniquePtr move()
 		{
 			UniquePtr ptr = new UniquePtr(data);
@@ -37,13 +49,25 @@ class UniquePtr : public Unique<D>
 		}
 };
 template <typename D>
-class UniqueArray : public Unique<D>
+class UniqueArray// : public Unique<D>
 {
+	protected:
+		D *data;
 	public:
-		UniqueArray(D *data)
+		UniqueArray(D *data) : data(data)
 		{
-			Unique(data);
+			std::cout << "generic constructor called" << std::endl;
 		}
+		bool reset()
+		{
+			data = NULL;
+			return true;
+		}
+	public:
+		/*UniqueArray(D *data)
+		{
+			Unique<D>(data);
+		}*/
 		UniqueArray move()
 		{
 			UniqueArray ptr = new UniqueArray(data);
